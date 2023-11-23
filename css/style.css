@@ -1,17 +1,19 @@
-/* styles.css */
-body {
+* {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
-
+body {
+  background-color: lightblue;
+}
 .container {
-  max-width: 800px;
+  max-width: 500px;
   margin: 20px auto;
   padding: 20px;
+  padding-right: 20px;
   background-color: #f4f4f4;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.408);
 }
 h1 {
   margin-bottom: 20px;
@@ -21,24 +23,63 @@ h1 {
   text-shadow: 2px 2px #ff6a0095;
   text-align: center;
 }
-
 #locationOptions {
+  width: 90%;
   margin-bottom: 20px;
+  background-color: #1c1c1c;
+  padding: 30px 10px;
+  box-shadow: 0 5px 30px rgba(103, 11, 17, 0.51);
+  position: relative;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+#currentLoc, #enterLoc {
+  width: 80% auto;
+  height: 40px;
+  padding: 10px;
+  padding-bottom: 20px;
+  border: none;
+  font-size: 14px;
+  margin-top: 20px;
+  background-color: rgb(219, 218, 218);
+  border-radius: 8px;
+}
+#currentLoc, #enterLoc input {
+  text-align: center;
+  width: 20px auto;
+  padding: 10px 10px;
+  font-size: 20px;
+}
+#searchLoc {
+  width: 100%;
+  margin-top: 20px;
   text-align: center;
 }
-
+#searchLoc button {
+  background: linear-gradient(to right, orange,  #f3ef09, navy);
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+}
 button {
   padding: 10px;
   margin-right: 10px;
   cursor: pointer;
 }
-
 #dashboard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  text-align: center;
 }
-
 .error-message {
   color: red;
 }
