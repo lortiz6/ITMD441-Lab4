@@ -5,24 +5,28 @@ function getCurrentLocation() {
     showError("Geolocation is not supported by this browser.");
   }
 }
+
 function successGetCurrentLocation(position) {
   const latitude = position.coords.latitude;
   const longitude = position.coords.longitude;
   const apiEndpoint = `https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&timezone=America/Chicago`;
   fetchSunriseSunset(apiEndpoint);
 }
+
 function errorGetCurrentLocation(error) {
   showError(`Error getting current location: ${error.message}`);
 }
+
 function getSunriseSunset(location) {
-  const geocodeApiEndpoint = `https://geocode.maps.co/search?q=${encodeURIComponent(location)}`;
+  const geocodeApiEndpoint = `https://geocode.xyz/${encodeURIComponent(location)}?json=1`;
   fetch(geocodeApiEndpoint)
     .then(response => response.json())
     .then(data => {
-      if (data.results && data.results.length > 0) {
-        const firstResult = data.results[0];
-        const latitude = firstResult.geometry.location.lat;
-        const longitude = firstResult.geometry.location.lng;
+      if (data.error) {
+        showError(`Error: ${data.error.description}`);
+      } else if (data.latt && data.longt) {
+        const latitude = data.latt;
+        const longitude = data.longt;
         const apiEndpoint = `https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&timezone=America/Chicago`;
         fetchSunriseSunset(apiEndpoint);
       } else {
@@ -31,16 +35,18 @@ function getSunriseSunset(location) {
     })
     .catch(error => showError(`Error searching location: ${error.message}`));
 }
+
 function searchLocation() {
   const searchInput = document.getElementById('searchLocation').value;
-  const geocodeApiEndpoint = `https://geocode.maps.co/search?q=${encodeURIComponent(searchInput)}`;
+  const geocodeApiEndpoint = `https://geocode.xyz/${encodeURIComponent(searchInput)}?json=1`;
   fetch(geocodeApiEndpoint)
     .then(response => response.json())
     .then(data => {
-      if (data.results && data.results.length > 0) {
-        const firstResult = data.results[0];
-        const latitude = firstResult.geometry.location.lat;
-        const longitude = firstResult.geometry.location.lng;
+      if (data.error) {
+        showError(`Error: ${data.error.description}`);
+      } else if (data.latt && data.longt) {
+        const latitude = data.latt;
+        const longitude = data.longt;
         const apiEndpoint = `https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&timezone=America/Chicago`;
         fetchSunriseSunset(apiEndpoint);
       } else {
@@ -49,12 +55,14 @@ function searchLocation() {
     })
     .catch(error => showError(`Error searching location: ${error.message}`));
 }
+
 function fetchSunriseSunset(apiEndpoint) {
   fetch(apiEndpoint)
     .then(response => response.json())
     .then(data => updateDashboard(data))
     .catch(error => showError(`Error fetching sunrise and sunset data: ${error.message}`));
 }
+
 function updateDashboard(data) {
   const dashboard = document.getElementById('dashboard');
   if (data.status === 'OK') {
@@ -74,6 +82,7 @@ function updateDashboard(data) {
     showError(`Error: ${data.status}`);
   }
 }
+
 function showError(message) {
   const dashboard = document.getElementById('dashboard');
   dashboard.innerHTML = `<p class="error-message">${message}</p>`;
