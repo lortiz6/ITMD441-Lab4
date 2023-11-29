@@ -22,11 +22,12 @@ function getSunriseSunset(location) {
   fetch(geocodeApiEndpoint)
     .then(response => response.json())
     .then(data => {
+      console.log("Geocode API response:", data); // Add this log
       if (data.error) {
-        showError(`Error: ${data.error.description}`);
-      } else if (data.latt && data.longt) {
-        const latitude = data.latt;
-        const longitude = data.longt;
+        showError(`Error: ${data.error}`);
+      } else if (data.lat && data.lon) {
+        const latitude = data.lat;
+        const longitude = data.lon;
         const apiEndpoint = `https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&timezone=America/Chicago`;
         fetchSunriseSunset(apiEndpoint);
       } else {
@@ -75,8 +76,15 @@ function updateDashboard(data) {
       <p>Dusk Today: ${results.civil_twilight_end}</p>
       <p>Day Length Today: ${results.day_length}</p>
       <p>Solar Noon Today: ${results.solar_noon}</p>
+      <p>Sunrise Tomorrow: ${results.sunrise_tomorrow}</p>
+      <p>Sunset Tomorrow: ${results.sunset_tomorrow}</p>
+      <p>Dawn Tomorrow: ${results.civil_twilight_begin_tomorrow}</p>
+      <p>Dusk Tomorrow: ${results.civil_twilight_end_tomorrow}</p>
+      <p>Day Length Tomorrow: ${results.day_length_tomorrow}</p>
+      <p>Solar Noon Tomorrow: ${results.solar_noon_tomorrow}</p>
       <p>Timezone: ${results.timezone}</p>
-      <p>Powered by <a href="https://sunrisesunset.io/" target="_blank">SunriseSunset.io</a></p>
+      <p>Powered by <a href="https://sunrisesunset.io/" target="_blank">SunriseSunset.io</a> and 
+        <a href="https://geocode.maps.co/" target="_blank">Geocode API</a></p>
     `;
   } else {
     showError(`Error: ${data.status}`);

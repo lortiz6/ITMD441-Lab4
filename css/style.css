@@ -87,6 +87,10 @@ button {
   gap: 20px;
   text-align: center;
 }
+#dashboard h2 {
+  text-align: center;
+  font-weight: bold;
+}
 .error-message {
   color: red;
 }
