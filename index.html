@@ -1,34 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITMD 441 Lab 4</title>
     <link rel="stylesheet" type="text/css" href="css/meyers_and_normalize-form_reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" async></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
-    <title>ITMD 441 Lab 4</title>
-  </head>
-  <body>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <video autoplay muted loop id="video-bg">
+        <source src="media/sunriset.mp4" type="video/mp4">
+    </video>
+
+    <header>
+        <h1>Relax and Enjoy in the Glow of Day and Night</h1>
+    </header>
     <div class="container">
-      <h1>🌄 Sunrise - Sunset 🌇</h1>
-      <div id="locationOptions">
-        <div id="enterLoc">
-          <input type="text" id="searchLocation" placeholder="Enter Location">
+        <div>
+            <h2>Sunrise - Sunset</h2>
         </div>
-        <div id=currentLoc>
-          <button onclick="getCurrentLocation()">Use Current Location</button>
+        <div class="buttons">
+            <select id="selectLoc">
+                <option value="">Select Location</option>
+                <option value="19.4326,-99.1332">🇲🇽 Mexico</option>
+                <option value="35.9078,127.7669">🇰🇷 South Korea</option>
+                <option value="33.8547,35.8623">🇱🇧 Lebanon</option>
+                <option value="51.5074,-0.1278">🇬🇧 London</option>
+                <option value="43.7844,-88.7879">🇺🇸 Wisconsin</option>
+                <option value="40.7128,-74.0060">🇺🇸 New York</option>
+                <option value="34.0522,-118.2437">🇺🇸 Los Angeles</option>
+            </select>
         </div>
-        <div id="searchLoc">
-          <button onclick="searchLocation()">Get Info</button>
+        <div class="buttons">
+            <input type="text" id="enterLoc" placeholder="Enter Location">
         </div>
-      </div>
-      <div id="dashboard"></div>
+        <div class="buttons">
+            <button id="currentLoc">Use Current Location</button>
+        </div>
+        <div class="dropdown">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Timezone</th>
+                        <th>Sunrise</th>
+                        <th>Sunset</th>
+                        <th>Dawn Today</th>
+                        <th>Dusk Today</th>
+                        <th>Day Length</th>
+                        <th>Solar Noon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be automatically inserted here -->
+                </tbody>
+            </table>
+        </div>
     </div>
-  </body>
+    <footer>
+        <div id="myname">
+            <p>© Liliana Ortiz</p>
+        </div>
+        <div id="powered">
+            <p><strong>Powered by:</strong><a href="https://sunrisesunset.io/" target="_blank">SunriseSunset.io</a> &
+                <a href="https://geocode.maps.co/" target="_blank">Geocode API</a></p>
+        </div>
+    </footer>
+</body>
+
 </html>
